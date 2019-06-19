@@ -2,7 +2,7 @@
 
 # Installation
 
-## Etape 1
+##Etape 1
 Cloner le repository
 >git clone 
 
