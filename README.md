@@ -29,3 +29,9 @@ Création des fixtures :
 ### Etape 7
 Lancer le serveur :
 >php bin/console server:run
+
+# Utilisation
+
+Voici un compte de test : 
+>Utilisateur : disko
+>Mot de passe : disko
