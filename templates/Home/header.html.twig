@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">DISKO TEST</a>
+    <a class="navbar-brand" href="{{ path('app_home_index')}}">DISKO TEST</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,11 +7,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ path('app_home_index')}}">Accueil <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <a href="{{ path('fos_user_security_login')}}">
-            <button class="btn btn-outline my-2 my-sm-0" type="submit"><i class="fa fa-user"></i>  Connexion</button>
-        </a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('app_back_index')}}">
+                <button class="btn btn-outline my-2 my-sm-0" type="submit"><i class="fa fa-user"></i>  Dashboard</button>
+            </a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login')}}">
+                <button class="btn btn-outline my-2 my-sm-0" type="submit"><i class="fa fa-user"></i>  Connexion</button>
+            </a>
+        {% endif %}
     </div>
 </nav>

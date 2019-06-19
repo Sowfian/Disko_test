@@ -1,5 +1,5 @@
 <?php
-// src/Controller/HomeController.php
+// src/Controller/BackController.php
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 
 
-class HomeController extends Controller
+
+class BackController extends Controller
 {
      /**
-      * @Route("/")
+      * @Route("/dashboard")
       */
     public function index(PaginatorInterface $paginator, ProductRepository $productRepository, Request $request): Response
     {
@@ -26,7 +27,7 @@ class HomeController extends Controller
             10
         );
 
-        return $this->render('Home/home.html.twig', [
+        return $this->render('Back/home.html.twig', [
             'products' => $product
         ]);
     }

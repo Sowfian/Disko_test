@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,26 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="product_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(PaginatorInterface $paginator, ProductRepository $productRepository, Request $request): Response
     {
+        $product = $paginator->paginate(
+            $productRepository->findByPrice(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/admin-index", name="product_index", methods={"GET"})
+     */
+    public function indexadmin(ProductRepository $productRepository): Response
+    {
+        return $this->render('product/indexadmin.html.twig', [
+            'products' => $productRepository->findByPrice(),
         ]);
     }
 

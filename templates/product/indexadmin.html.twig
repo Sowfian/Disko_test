@@ -3,6 +3,11 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+    <div>
+        <a href="{{ path('product_new')}}">
+            <button class="btn-dark"> Ajouter un produit </button>
+        </a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -22,6 +27,7 @@
                 <td>{{ product.description }}</td>
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
