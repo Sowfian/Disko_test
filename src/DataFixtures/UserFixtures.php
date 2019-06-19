@@ -24,6 +24,15 @@ class UserFixtures extends Fixture
             $manager->persist($user);
         }
 
+        $user = new User();
+        $user
+            ->setUsername('disko')
+            ->setEmail('disko@disko.fr')
+            ->setEnabled(true)
+            ->setPlainPassword('disko')
+            ->setRoles(array('ROLE_USER'));
+        $manager->persist($user);
+
         $manager->flush();
     }
 }
